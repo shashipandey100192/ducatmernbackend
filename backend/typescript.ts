@@ -9,8 +9,6 @@ let u:string[]=["kumar","ravi","mohan"];
 const p:any[]=[10,20,30,"kumar","oooo","abc"];
 const w:[number,string,boolean,string]=[40,"kumar",true,"ravi"];
 
-
-
 console.log(d);
 console.log(typeof(d));
 
