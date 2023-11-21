@@ -3,7 +3,7 @@
     "nodemon": "^3.0.1"
   },
   "scripts": {
-    "start": "nodemon server2.js"
+    "start": "nodemon server3.js"
   },
   "name": "backend",
   "version": "1.0.0",
