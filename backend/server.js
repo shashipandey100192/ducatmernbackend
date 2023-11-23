@@ -1,21 +1,18 @@
-const http = require('http');
+const express  = require('express');
+const myapp = express();
+require('dotenv').config();
+const port = process.env.port || 6800
 
-const myserver = http.createServer((req,res)=>{
-        // res.write("welcome         to node site");
-        // res.write("<h1>create node server </h1>");
-        // res.write("<h2>write something </h2>")
-        res.write("<div><h1>headingeeeeeeeeeeeeeeepppppppppppp</h1><h2>heading two</h2></div>")
-        res.end();
+myapp.get("/",(req,res)=>{
+    res.send("welcome to express js");
+})
+
+myapp.get("/about",(req,res)=>{
+    res.send("welcome to about page");
 })
 
 
-myserver.listen(4800,()=>{
-    console.log("server is runing");
-});
-
-
-
-
-
-
+myapp.listen(port,()=>{
+    console.log(`port running ${port}`);
+})
 
