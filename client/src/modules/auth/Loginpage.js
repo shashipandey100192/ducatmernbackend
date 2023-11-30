@@ -21,8 +21,9 @@ function Loginpage() {
                             <label className="form-label">Password</label>
                             <input type="text" className="form-control"/> 
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Login</button>
                         <Link type="submit" className="btn" to="dashboard">dashboard</Link>
+                        <Link type="submit" className="btn" to="registor">New Registor</Link>
                     </form>
                 </div>
             </div>
