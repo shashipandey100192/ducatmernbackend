@@ -1,15 +1,19 @@
+'Access-Control-Allow-Origin'
 const express  = require('express');
-const myapp = express();
+const cors = require('cors');
+const route = express();
 require('dotenv').config();
-const route = require('./routes/myroute');
+const routed = require('./routes/myroute');
 require('./database/connection');
 const port = process.env.port || 6800
 
 
+route.use(cors());
+route.use(routed);
+route.use(express.json());
 
-myapp.use(route);
 
-myapp.listen(port,()=>{
+route.listen(port,()=>{
     console.log(`port running ${port}`);
 })
 

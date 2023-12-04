@@ -19,4 +19,8 @@ const myschimapattern = new mongose.Schema({
 
 });
 
+const mytype = new mongose.model("lastbatch",myschimapattern);
+
+module.exports = mytype
+
 
