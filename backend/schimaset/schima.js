@@ -1,16 +1,16 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 
-const myschimapattern = new mongose.Schema({
+const myschimapattern = new mongoose.Schema({
     email:{
         type:String
     },
     phone:{
         type:String
     },
-    dob:{
+    gender:{
         type:String
     },
-    gender:{
+    dob:{
         type:String
     },
     pass:{
@@ -19,8 +19,8 @@ const myschimapattern = new mongose.Schema({
 
 });
 
-const mytype = new mongose.model("lastbatch",myschimapattern);
-
+const mytype = new mongoose.model("lastregistor",myschimapattern);
 module.exports = mytype
+
 
 

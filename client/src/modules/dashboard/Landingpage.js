@@ -67,7 +67,7 @@ const [mydata, setdatafunc]=useState([])
                         <tbody>
                             {mydata.map((d,s)=>{
                                 return(
-                                    <tr>
+                                    <tr key={s}>
                                 <th scope="row">{++s}</th>
                                 <td>{d._id}</td>
                                 <td>Otto</td>

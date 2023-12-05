@@ -24,8 +24,19 @@ function Registor() {
         })
       }
 
-const mysubmit = ()=>{
-    console.log(user);
+
+const mysubmit = async ()=>{
+  
+    const {phone,gender,pass,dob,email} = user;
+    const res = await fetch("http://localhost:7900/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            phone,gender,pass,dob,email
+        })
+    })
+    const data = await res.json();
+    console.log(data);
 }
 
 
@@ -64,7 +75,7 @@ const mysubmit = ()=>{
                             <label className="form-label">Password</label>
                             <input type="text" className="form-control" name='pass' value={user.pass} onChange={setdata}/>
                         </div>
-                        <button type="button" className="btn btn-primary" onClick={mysubmit}>Registor Now</button>
+                        <button type="submit" className="btn btn-primary" onClick={mysubmit}>Registor Now</button>
                         <Link type="submit" className="btn btn-outline-warning ms-3" to="dashboard">dashboard</Link>
                     </form>
                 </div>

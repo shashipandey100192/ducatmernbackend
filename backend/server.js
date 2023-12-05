@@ -1,5 +1,6 @@
 'Access-Control-Allow-Origin'
 const express  = require('express');
+const bodyparser = require('body-parser');
 const cors = require('cors');
 const route = express();
 require('dotenv').config();

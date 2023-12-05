@@ -20,4 +20,20 @@ route.get("/getalldata",async(req,res)=>{
 
 
 
+route.post("/create",async(req,res)=>{
+    const {email,phone,gender,pass,dob} = req.body;
+    const adduser = new mytype({
+        phone,gender,pass,dob,email
+    });
+    await adduser.save();
+    res.status(200).json(adduser);
+    console.log(adduser);
+});
+
+
+
+
+
+
+
 module.exports=route
