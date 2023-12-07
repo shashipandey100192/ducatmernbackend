@@ -1,16 +1,39 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function Landingpage() {
+const {id}=useParams();
+
 const [mydata, setdatafunc]=useState([])
     useEffect(()=>{
+        myalldataapi();
+},[])
+
+
+
+const myalldataapi = ()=>
+{
     fetch('http://localhost:7900/getalldata')
         .then(res => res.json())
         .then((data) => {
             console.log(data);
             setdatafunc(data);
-        })   
-},[])
+
+        });
+}
+
+
+const deleterecor = async(id)=>{
+    await axios.delete(`http://localhost:7900/deleterecord/${id}`).then((res)=>{
+        console.log(res.data);
+        myalldataapi();
+        });
+}
+
+
+
+
     
     return (
         <div className='container mt-3'>
@@ -73,12 +96,12 @@ const [mydata, setdatafunc]=useState([])
                                 <td>Otto</td>
                                 <td>@mdo</td>
                                 <td className='text-end'>
-                                    <button className='btn btn-danger btn-sm'>Del</button>
+                                    <button className='btn btn-danger btn-sm' onClick={()=>deleterecor(d._id)}>Del</button>
                                     <button className='btn btn-info btn-sm ms-2'>Edit</button>
                                     <button className='btn btn-warning btn-sm ms-2'>View</button>
                                 </td>
                             </tr>
-                                )
+                                );
                             })}
                             
                             

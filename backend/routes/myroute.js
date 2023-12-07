@@ -3,6 +3,7 @@ const express = require('express');
 const route = express.Router();
 const mytype = require('../schimaset/schima');
 
+
 route.get("/",(req,res)=>{
     res.send("welcome to express js");
 })
@@ -20,6 +21,7 @@ route.get("/getalldata",async(req,res)=>{
 
 
 
+
 route.post("/create",async(req,res)=>{
     const {email,phone,gender,pass,dob} = req.body;
     const adduser = new mytype({
@@ -28,6 +30,16 @@ route.post("/create",async(req,res)=>{
     await adduser.save();
     res.status(200).json(adduser);
     console.log(adduser);
+});
+
+
+
+// delete api
+route.delete("/deleterecord/:id",async(req,res)=>{
+    const {id} = req.params;
+    const a = await mytype.findByIdAndDelete({_id:id})
+    console.log(a);
+    res.status(201).json(a);
 });
 
 

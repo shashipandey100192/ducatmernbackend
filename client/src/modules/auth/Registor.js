@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,redirectDocument } from 'react-router-dom';
 
 
 
@@ -37,6 +37,8 @@ const mysubmit = async ()=>{
     })
     const data = await res.json();
     console.log(data);
+    // redirectDocument('/');
+        window.location="/";
 }
 
 
@@ -75,7 +77,7 @@ const mysubmit = async ()=>{
                             <label className="form-label">Password</label>
                             <input type="text" className="form-control" name='pass' value={user.pass} onChange={setdata}/>
                         </div>
-                        <button type="submit" className="btn btn-primary" onClick={mysubmit}>Registor Now</button>
+                        <button type="button" className="btn btn-primary" onClick={mysubmit}>Registor Now</button>
                         <Link type="submit" className="btn btn-outline-warning ms-3" to="dashboard">dashboard</Link>
                     </form>
                 </div>
