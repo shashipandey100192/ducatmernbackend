@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Landingpage() {
 const {id}=useParams();
@@ -36,7 +36,7 @@ const deleterecor = async(id)=>{
 
     
     return (
-        <div className='container mt-3'>
+        <div className='container-fluid mt-3'>
             <div className='row'>
                 <div className='col-md-3'>
                     <div className="card text-bg-success mb-3">
@@ -82,9 +82,13 @@ const deleterecor = async(id)=>{
                             <tr>
                                 <th scope="col">s.no</th>
                                 <th scope="col">mongodbid</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">actions</th>
+                                <th scope="col">Email Id</th>
+                                <th scope="col">Phone No</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">DOB</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Profile</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,12 +97,16 @@ const deleterecor = async(id)=>{
                                     <tr key={s}>
                                 <th scope="row">{++s}</th>
                                 <td>{d._id}</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{d.email}</td>
+                                <td>{d.phone}</td>
+                                <td>{d.gender}</td>
+                                <td>{d.dob}</td>
+                                <td>{d.pass}</td>
+                                <td><img src={d.profile} width="50"/></td>
                                 <td className='text-end'>
                                     <button className='btn btn-danger btn-sm' onClick={()=>deleterecor(d._id)}>Del</button>
-                                    <button className='btn btn-info btn-sm ms-2'>Edit</button>
-                                    <button className='btn btn-warning btn-sm ms-2'>View</button>
+                                    <Link className='btn btn-info btn-sm ms-2' to={`edit/${d._id}`}>Edit</Link>
+                                    <Link className='btn btn-warning btn-sm ms-2' to={`view/${d._id}`}>View</Link>
                                 </td>
                             </tr>
                                 );

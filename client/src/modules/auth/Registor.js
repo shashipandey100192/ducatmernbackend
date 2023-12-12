@@ -10,7 +10,8 @@ function Registor() {
         phone:'',
         dob:'',
         gender:'',
-        pass:''
+        pass:'',
+        profile:''
     });
 
     const setdata = (e)=>{
@@ -27,12 +28,12 @@ function Registor() {
 
 const mysubmit = async ()=>{
   
-    const {phone,gender,pass,dob,email} = user;
+    const {phone,gender,pass,dob,email,profile} = user;
     const res = await fetch("http://localhost:7900/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            phone,gender,pass,dob,email
+            phone,gender,pass,dob,email,profile
         })
     })
     const data = await res.json();
@@ -76,6 +77,10 @@ const mysubmit = async ()=>{
                         <div className="mb-3">
                             <label className="form-label">Password</label>
                             <input type="text" className="form-control" name='pass' value={user.pass} onChange={setdata}/>
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Profile Pic(URL)</label>
+                            <input type="text" className="form-control" name='profile' value={user.profile} onChange={setdata}/>
                         </div>
                         <button type="button" className="btn btn-primary" onClick={mysubmit}>Registor Now</button>
                         <Link type="submit" className="btn btn-outline-warning ms-3" to="dashboard">dashboard</Link>

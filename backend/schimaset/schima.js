@@ -15,6 +15,9 @@ const myschimapattern = new mongoose.Schema({
     },
     pass:{
         type:String
+    },
+    profile:{
+        type:String
     }
 
 });

@@ -23,9 +23,9 @@ route.get("/getalldata",async(req,res)=>{
 
 
 route.post("/create",async(req,res)=>{
-    const {email,phone,gender,pass,dob} = req.body;
+    const {email,phone,gender,pass,dob,profile} = req.body;
     const adduser = new mytype({
-        phone,gender,pass,dob,email
+        phone,gender,pass,dob,email,profile
     });
     await adduser.save();
     res.status(200).json(adduser);
@@ -42,6 +42,20 @@ route.delete("/deleterecord/:id",async(req,res)=>{
     res.status(201).json(a);
 });
 
+/*single data api*/
+route.get("/single/:id",async(req,res)=>{
+    const {id} = req.params;
+    const singledata = await mytype.findById({_id:id});
+    res.json(singledata);
+    console.log(singledata);
+});
+
+route.patch("/updaterecord/:id",async(req,res)=>{
+    const {id} = req.params;
+    const recordupdate = await mytype.findByIdAndUpdate(id,req.body,{new:true});
+    console.log(recordupdate);
+    res.status(201).json(recordupdate);
+});
 
 
 
