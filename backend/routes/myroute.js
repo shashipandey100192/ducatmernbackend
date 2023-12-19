@@ -2,7 +2,8 @@
 const express = require('express');
 const route = express.Router();
 const mytype = require('../schimaset/schima');
-
+const authenticat = require('../midilware/midelware');
+const bcrypt = require("bcryptjs");
 
 route.get("/",(req,res)=>{
     res.send("welcome to express js");
@@ -56,6 +57,62 @@ route.patch("/updaterecord/:id",async(req,res)=>{
     console.log(recordupdate);
     res.status(201).json(recordupdate);
 });
+
+
+
+
+route.post("/login", async(req,res)=>{
+    
+    const {email,pass} = req.body;
+    console.log(req.body);
+    if(!email || !pass){
+        return res.status(422).json({error:"user and password dont match"});
+       
+    }
+    try{
+        const uservalidation = await mytype.findOne({email:email});
+        console.log(uservalidation);
+        if(uservalidation){
+            const mathdata = await bcrypt.compare(pass,uservalidation.pass);
+            console.log(mathdata);
+            if(!mathdata){
+                res.status(422).json({error:"password not match",status:422});
+            }else{
+                //token generate after successful find data
+                    const token = await uservalidation.customgeenratefunction();
+                // cookies generate
+                    res.cookie("usecookie",token,{
+                        expires:new Date(Date.now()+9000000),
+                        httpOnly:true
+                    });
+                    const result = {
+                        uservalidation,
+                        token,
+                        uservalidation
+                    }
+                    return res.status(201).json({status:201,result});
+                    
+            }
+        }
+    } catch(error)
+    {}
+    
+});
+
+
+// user validation
+route.get("/validuser",authenticat,async(req,res)=>{
+    // console.log("show this message after done authenticat varification");
+    try{
+        const firsttimevalid = await mytype.findOne({_id:req.userId});
+        res.status(201).json({status:201,firsttimevalid});
+    }
+    catch(error)
+    {
+        res.status(401).json({status:401,error})
+    }
+});
+
 
 
 

@@ -6,12 +6,14 @@ require('dotenv').config();
 const myrouted = require('./routes/myroute');
 require('./database/connection');
 const port = process.env.port || 6800
+const cookieparser = require('cookie-parser');
 
 
 
 route.use(express.json());
 route.use(cors());
 route.use(myrouted);
+route.use(cookieparser());
 
 
 
